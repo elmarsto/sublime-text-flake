@@ -23,7 +23,7 @@
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = [ pkgs.sublime4 ];
         };
-        packages.default = st;
+        packages.default = pkgs.sublime4;
       }
     );
 }
