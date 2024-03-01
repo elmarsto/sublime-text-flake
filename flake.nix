@@ -9,13 +9,13 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
   outputs =
-    { flake-utils, gitignore, nixpkgs }: flake-utils.lib.eachDefaultSystem (system:
+    { flake-utils, gitignore, nixpkgs, ... }: flake-utils.lib.eachDefaultSystem (system:
       let
         app = p: { program = "${p}"; type = "app"; };
         pkgs = import nixpkgs { inherit system; };
         src = gitignore.lib.gitignoreSource ./.;
         st = pkgs.writeShellScript "sublime4" ''
-          ${pkgs.sublime4}/bin/sublime-text $@
+          ${pkgs.sublime4}/bin/sublime $@
         '';
       in
       {
